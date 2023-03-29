@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+
+<body>
+    <div class="flex">
+        <div class="main">
+            <h1 style="text-align: center;"> Registration </h1>
+            <form action="/registration" method="post">
+                {% csrf_token %}
+                <span class="line">
+                    <p>First Name : </p>
+                    <input type="text" name="fname">
+                </span>
+                <span class="line">
+                    <p>Last Name : </p>
+                    <input type="text" name="lname">
+                </span>
+                <span class="line">
+                    <p>Email : </p>
+                    <input type="text" name="email">
+                </span>
+                <span class="line">
+                    <p>Password :</p>
+                    <input type="password" name="pwd">
+                </span>
+                <span class="line">
+                    <p>Confirm Pass :</p>
+                    <input type="password" name="cpwd">
+                </span>
+                <div><input type="submit" value="Register" id="re"></div>
+
+
+
+            </form>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+        </div>
+        <div class="main">
+            <h1 style="text-align: center;">Login</h1>
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <span class="line">
+                    <p>Email : </p>
+                    <input type="text" name="email">
+                </span>
+                <span class="line">
+                    <p>Password :</p>
+                    <input type="password" name="pwd">
+                </span>
+                <div><input type="submit" value="Log in " id="ree"></div>
+
+            </form>
+       
+        </div>
+    </div>
+
+
+</body>
+
+</html>
